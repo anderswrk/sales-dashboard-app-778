@@ -23,7 +23,7 @@ const Index = () => {
       <div className="flex-1 flex flex-col md:flex-row items-center justify-center px-6 md:px-12 max-w-7xl mx-auto">
         <div className="w-full md:w-1/2 text-left mb-10 md:mb-0 md:pr-10">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-            Sales dashboard
+            KLIV dashboard
           </h1>
           <p className="text-lg md:text-xl text-gray-600 mb-8">
             Visualize your sales performance with our interactive dashboard. Track metrics, analyze trends, and make data-driven decisions.
