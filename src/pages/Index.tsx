@@ -1,29 +1,35 @@
 
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 
 const IndexPage = () => {
-  const navigate = useNavigate();
-
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 p-4">
-      <div className="max-w-3xl text-center">
-        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl text-gray-900 mb-6">
-          Master Dashboard
-        </h1>
-        <p className="text-xl text-gray-600 mb-8">
-          A comprehensive analytics platform for tracking and analyzing your sales performance metrics in real-time.
-        </p>
-        <Button 
-          onClick={() => navigate('/dashboard')} 
-          className="px-8 py-6 text-lg"
-        >
-          Go to Dashboard
-          <ArrowRight className="ml-2 h-5 w-5" />
-        </Button>
-      </div>
+    <div className="flex items-center justify-center min-h-screen bg-gray-50">
+      <Card className="w-full max-w-md">
+        <CardHeader>
+          <CardTitle className="text-2xl font-bold text-center">Master Dashboard</CardTitle>
+          <CardDescription className="text-center">
+            A comprehensive analytics platform for your business
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <p className="text-center mb-6">
+            Track your sales performance, analyze customer behavior, and make data-driven decisions.
+          </p>
+          <div className="flex justify-center">
+            <Link to="/dashboard">
+              <Button size="lg" className="w-full">
+                Go to Dashboard
+              </Button>
+            </Link>
+          </div>
+        </CardContent>
+        <CardFooter className="flex justify-center text-sm text-gray-500">
+          © 2023 Master Dashboard. All rights reserved.
+        </CardFooter>
+      </Card>
     </div>
   );
 };
