@@ -7,7 +7,7 @@ const DashboardHeader = () => {
   return (
     <div className="flex items-center justify-between p-4 border-b">
       <div className="flex items-center">
-        <h1 className="text-2xl font-bold text-gray-800 mr-6">Sales Dashboard</h1>
+        <h1 className="text-2xl font-bold text-gray-800 mr-6">Sample Dashboard</h1>
         <div className="hidden md:block">
           <Input 
             className="w-64" 
