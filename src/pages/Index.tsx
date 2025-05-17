@@ -1,36 +1,112 @@
 
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import { ArrowRight, BarChart2, LineChart, PieChart } from "lucide-react";
 
-const IndexPage = () => {
+const Index = () => {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-      <Card className="w-[400px] shadow-lg">
-        <CardHeader>
-          <CardTitle className="text-2xl font-bold text-center">Master Dashboard</CardTitle>
-          <CardDescription className="text-center">
-            Comprehensive analytics for your business
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="flex justify-center">
-          <img 
-            src="/placeholder.svg" 
-            alt="Dashboard Preview" 
-            className="w-full h-48 object-cover rounded-md"
-          />
-        </CardContent>
-        <CardFooter className="flex justify-center">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-blue-50 via-white to-indigo-50">
+      {/* Header */}
+      <header className="w-full py-4 px-6 flex justify-between items-center">
+        <div className="flex items-center">
+          <BarChart2 className="h-6 w-6 text-blue-600 mr-2" />
+          <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">SalesTracker</span>
+        </div>
+        <Link to="/dashboard">
+          <Button variant="ghost" size="sm">
+            Dashboard
+          </Button>
+        </Link>
+      </header>
+
+      {/* Hero Section */}
+      <div className="flex-1 flex flex-col md:flex-row items-center justify-center px-6 md:px-12 max-w-7xl mx-auto">
+        <div className="w-full md:w-1/2 text-left mb-10 md:mb-0 md:pr-10">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+            Sales Dashboard
+          </h1>
+          <p className="text-lg md:text-xl text-gray-600 mb-8">
+            Visualize your sales performance with our interactive dashboard. Track metrics, analyze trends, and make data-driven decisions.
+          </p>
           <Link to="/dashboard">
-            <Button size="lg" className="w-full">
-              Enter Dashboard
+            <Button size="lg" className="font-medium bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-md hover:shadow-lg">
+              Go to Dashboard
+              <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </Link>
-        </CardFooter>
-      </Card>
+        </div>
+        <div className="w-full md:w-1/2 relative">
+          <div className="relative z-10 bg-white/80 backdrop-blur-sm shadow-xl border border-blue-100 rounded-xl p-6 md:p-8">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="bg-blue-50 rounded-lg p-4 flex flex-col">
+                <span className="text-sm text-gray-500 mb-1">Total Revenue</span>
+                <span className="text-2xl font-bold text-gray-800">$1.02M</span>
+                <div className="mt-2 flex items-center text-green-600 text-sm">
+                  <LineChart className="h-4 w-4 mr-1" />
+                  <span>+12.5%</span>
+                </div>
+              </div>
+              <div className="bg-indigo-50 rounded-lg p-4 flex flex-col">
+                <span className="text-sm text-gray-500 mb-1">Orders</span>
+                <span className="text-2xl font-bold text-gray-800">8,540</span>
+                <div className="mt-2 flex items-center text-green-600 text-sm">
+                  <LineChart className="h-4 w-4 mr-1" />
+                  <span>+5.2%</span>
+                </div>
+              </div>
+              <div className="bg-purple-50 rounded-lg p-4 flex flex-col">
+                <span className="text-sm text-gray-500 mb-1">Customers</span>
+                <span className="text-2xl font-bold text-gray-800">3,240</span>
+                <div className="mt-2 flex items-center text-red-600 text-sm">
+                  <LineChart className="h-4 w-4 mr-1" />
+                  <span>-2.4%</span>
+                </div>
+              </div>
+              <div className="bg-blue-50 rounded-lg p-4 flex flex-col">
+                <span className="text-sm text-gray-500 mb-1">Conversion</span>
+                <span className="text-2xl font-bold text-gray-800">3.2%</span>
+                <div className="mt-2 flex items-center text-green-600 text-sm">
+                  <PieChart className="h-4 w-4 mr-1" />
+                  <span>+1.1%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Decorative elements */}
+      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+      <div className="absolute top-1/3 right-1/4 w-72 h-72 bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+      <div className="absolute bottom-1/4 right-1/3 w-80 h-80 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+      
+      <style jsx>{`
+        @keyframes blob {
+          0% {
+            transform: translate(0px, 0px) scale(1);
+          }
+          33% {
+            transform: translate(30px, -50px) scale(1.1);
+          }
+          66% {
+            transform: translate(-20px, 20px) scale(0.9);
+          }
+          100% {
+            transform: translate(0px, 0px) scale(1);
+          }
+        }
+        .animate-blob {
+          animation: blob 7s infinite;
+        }
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+        .animation-delay-4000 {
+          animation-delay: 4s;
+        }
+      `}</style>
     </div>
   );
 };
 
-export default IndexPage;
+export default Index;
