@@ -1,9 +1,41 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ArrowRight, BarChart2, LineChart, PieChart } from "lucide-react";
+import { ArrowRight, BarChart2, LineChart, PieChart, Mail } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: ""
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    // ここで実際のフォーム送信処理を行う代わりに、成功メッセージを表示
+    setTimeout(() => {
+      toast({
+        title: "送信完了",
+        description: "お問い合わせありがとうございます。近日中にご連絡いたします。",
+      });
+      setFormData({ name: "", email: "", message: "" });
+      setIsSubmitting(false);
+    }, 1000);
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-blue-50 via-white to-indigo-50">
       {/* ヘッダー */}
@@ -26,7 +58,7 @@ const Index = () => {
             Klivダッシュボード
           </h1>
           <p className="text-lg md:text-xl text-gray-600 mb-8">
-            Visualize your sales performance with an interactive dashboard. Track metrics, analyze trends, and make data-driven decisions.
+            インタラクティブなダッシュボードで販売実績を可視化。指標の追跡、傾向の分析、データに基づいた意思決定を行いましょう。
           </p>
           <Link to="/dashboard">
             <Button size="lg" className="font-medium bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-md hover:shadow-lg">
@@ -74,6 +106,91 @@ const Index = () => {
           </div>
         </div>
       </div>
+      
+      {/* お問い合わせフォーム */}
+      <section className="w-full py-16 px-6 bg-white/70 backdrop-blur-sm mt-16">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-4">お問い合わせ</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              ご質問やご要望がございましたら、以下のフォームからお気軽にお問い合わせください。
+              担当者が迅速にご対応いたします。
+            </p>
+          </div>
+          
+          <form onSubmit={handleSubmit} className="bg-white rounded-xl shadow-lg p-8 border border-blue-100">
+            <div className="grid grid-cols-1 gap-6">
+              <div className="flex flex-col space-y-2">
+                <label htmlFor="name" className="text-sm font-medium text-gray-700">お名前</label>
+                <Input
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="山田 太郎"
+                  required
+                  className="border-blue-200 focus:border-blue-400"
+                />
+              </div>
+              
+              <div className="flex flex-col space-y-2">
+                <label htmlFor="email" className="text-sm font-medium text-gray-700">メールアドレス</label>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="your-email@example.com"
+                  required
+                  className="border-blue-200 focus:border-blue-400"
+                />
+              </div>
+              
+              <div className="flex flex-col space-y-2">
+                <label htmlFor="message" className="text-sm font-medium text-gray-700">メッセージ</label>
+                <Textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="お問い合わせ内容をご記入ください"
+                  required
+                  className="min-h-[120px] border-blue-200 focus:border-blue-400"
+                />
+              </div>
+              
+              <Button 
+                type="submit" 
+                disabled={isSubmitting}
+                className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 transition-all duration-300"
+              >
+                {isSubmitting ? (
+                  <span className="flex items-center">
+                    <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    送信中...
+                  </span>
+                ) : (
+                  <span className="flex items-center">
+                    <Mail className="mr-2 h-4 w-4" />
+                    送信する
+                  </span>
+                )}
+              </Button>
+            </div>
+          </form>
+        </div>
+      </section>
+      
+      {/* フッター */}
+      <footer className="w-full py-6 px-6 bg-gray-50">
+        <div className="max-w-7xl mx-auto text-center text-gray-500 text-sm">
+          &copy; {new Date().getFullYear()} セールストラッカー. All rights reserved.
+        </div>
+      </footer>
       
       {/* 装飾要素 */}
       <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
