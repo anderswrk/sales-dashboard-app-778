@@ -14,12 +14,9 @@ const Index = () => {
     message: ""
   });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -27,12 +24,7 @@ const Index = () => {
     // Here you would typically send the form data to a server
     console.log("Form submitted:", formData);
     toast.success("お問い合わせを受け付けました。ありがとうございます。");
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      message: ""
-    });
+    setFormData({ name: "", email: "", message: "" });
   };
 
   return (
@@ -107,21 +99,22 @@ const Index = () => {
       </div>
       
       {/* お問い合わせフォーム */}
-      <section className="w-full py-16 px-6 md:px-12 max-w-5xl mx-auto">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">お問い合わせ</h2>
-          <p className="text-gray-600">ご質問やご要望がございましたら、お気軽にお問い合わせください。</p>
-        </div>
-        
-        <div className="bg-white/80 backdrop-blur-sm shadow-xl border border-blue-100 rounded-xl p-6 md:p-8 relative z-10">
-          <form onSubmit={handleSubmit} className="space-y-6">
+      <div className="w-full bg-white/70 backdrop-blur-sm py-16 mt-16">
+        <div className="max-w-3xl mx-auto px-6">
+          <div className="text-center mb-10">
+            <Mail className="h-10 w-10 text-blue-600 mx-auto mb-4" />
+            <h2 className="text-3xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">お問い合わせ</h2>
+            <p className="text-gray-600">ご質問やご意見がございましたら、お気軽にお問い合わせください。</p>
+          </div>
+          
+          <form onSubmit={handleSubmit} className="space-y-6 bg-white/80 p-8 rounded-xl shadow-md border border-blue-100">
             <div className="space-y-2">
               <label htmlFor="name" className="block text-sm font-medium text-gray-700">お名前</label>
               <Input
                 id="name"
                 name="name"
                 value={formData.name}
-                onChange={handleInputChange}
+                onChange={handleChange}
                 placeholder="山田 太郎"
                 required
                 className="w-full"
@@ -135,7 +128,7 @@ const Index = () => {
                 name="email"
                 type="email"
                 value={formData.email}
-                onChange={handleInputChange}
+                onChange={handleChange}
                 placeholder="example@example.com"
                 required
                 className="w-full"
@@ -148,7 +141,7 @@ const Index = () => {
                 id="message"
                 name="message"
                 value={formData.message}
-                onChange={handleInputChange}
+                onChange={handleChange}
                 placeholder="お問い合わせ内容をご記入ください"
                 required
                 className="w-full min-h-[120px]"
@@ -157,22 +150,18 @@ const Index = () => {
             
             <Button 
               type="submit" 
-              className="w-full md:w-auto font-medium bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-md hover:shadow-lg"
+              className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
             >
               送信する
               <Send className="ml-2 h-4 w-4" />
             </Button>
           </form>
         </div>
-      </section>
+      </div>
       
       {/* フッター */}
-      <footer className="w-full py-6 px-6 text-center text-gray-600 text-sm">
-        <div className="flex items-center justify-center mb-2">
-          <BarChart2 className="h-5 w-5 text-blue-600 mr-2" />
-          <span className="font-medium">セールストラッカー</span>
-        </div>
-        <p>© {new Date().getFullYear()} セールストラッカー. All rights reserved.</p>
+      <footer className="w-full py-6 px-6 text-center text-gray-500 text-sm">
+        <p>© 2023 セールストラッカー. All rights reserved.</p>
       </footer>
       
       {/* 装飾要素 */}
