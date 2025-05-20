@@ -10,7 +10,7 @@ const Index = () => {
       <header className="w-full py-4 px-6 flex justify-between items-center">
         <div className="flex items-center">
           <BarChart2 className="h-6 w-6 text-blue-600 mr-2" />
-          <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Kliv Tracker</span>
+          <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Sales Tracker</span>
         </div>
         <Link to="/dashboard">
           <Button variant="ghost" size="sm">
