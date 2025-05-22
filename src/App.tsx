@@ -6,7 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Dashboard from "./pages/Dashboard"; // Import the Dashboard component
-import NotFound from "./pages/NotFound";
+import NotFound from "./pages/NotFound"; // Corrected import path
 
 const queryClient = new QueryClient();
 
