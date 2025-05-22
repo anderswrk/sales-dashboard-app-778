@@ -10,7 +10,7 @@ const Index = () => {
       <header className="w-full py-4 px-6 flex justify-between items-center">
         <div className="flex items-center">
           <BarChart2 className="h-6 w-6 text-blue-600 mr-2" />
-          <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Sales Tracker</span>
+          <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">KLIV Tracker</span>
         </div>
         <Link to="/dashboard">
           <Button variant="ghost" size="sm">
@@ -23,7 +23,7 @@ const Index = () => {
       <div className="flex-1 flex flex-col md:flex-row items-center justify-center px-6 md:px-12 max-w-7xl mx-auto">
         <div className="w-full md:w-1/2 text-left mb-10 md:mb-0 md:pr-10">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-            Sales Dashboard
+            KLIV Dashboard
           </h1>
           <p className="text-lg md:text-xl text-gray-600 mb-8">
             インタラクティブなダッシュボードで販売実績を可視化。指標の追跡、傾向の分析、データに基づいた意思決定を行いましょう。
